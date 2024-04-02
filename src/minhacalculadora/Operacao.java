@@ -11,12 +11,12 @@ public enum Operacao {
     SAIR         ("S"              , ""                 , ""             , ""         ),
     OPCAOINVALIDA("Opção inválida!", "Divisor inválido!", ""             , ""         );
 
-    final String descricao;
-    final String primeiroTermo;
-    final String segundoTermo;
-    final String resultado;
-    final int[]  valoresDosTermos = {0, 0};
-          int    modulo;
+    final String  descricao;
+    final String  primeiroTermo;
+    final String  segundoTermo;
+    final String  resultado;
+    final int[]   valoresDosTermos = {0, 0};
+          Divisao divisao = new Divisao();
 
     Operacao(String descricao, String primeiroTermo, String segundoTermo, String resultado) {
         this.descricao     = descricao;
@@ -52,13 +52,11 @@ public enum Operacao {
             case ADICAO:        return new Adicao       ().calcular(valoresDosTermos[0], valoresDosTermos[1]);
             case SUBTRACAO:     return new Subtracao    ().calcular(valoresDosTermos[0], valoresDosTermos[1]);
             case MULTIPLICACAO: return new Multiplicacao().calcular(valoresDosTermos[0], valoresDosTermos[1]);
-            default: Divisao divisao = new Divisao                 (valoresDosTermos[0], valoresDosTermos[1]);
-                     modulo = divisao.getModulo();
-                     return   divisao.calcular();
+            default:            return             divisao.calcular(valoresDosTermos[0], valoresDosTermos[1]);
         }
     }
 
     public void mostrarResto() {
-        if (this.equals(Operacao.DIVISAO) && modulo != 0) System.out.printf("Resto = %d\n", modulo);
+        if (this.equals(Operacao.DIVISAO) && divisao.getMod() != 0) System.out.printf("Resto = %d\n", divisao.getMod());
     }
 }

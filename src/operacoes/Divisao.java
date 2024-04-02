@@ -12,4 +12,7 @@ public class Divisao extends Calcular {
     }
 
     public int getModulo() { return modulo; }
+
+    @Override
+    public int calcular(int... valoresDosTermos) { return resultado; }
 }

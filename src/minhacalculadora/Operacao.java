@@ -49,12 +49,12 @@ public enum Operacao {
 
     private int getCalculo() {
         switch (this) {
-            case ADICAO:        return new Adicao       (valoresDosTermos[0], valoresDosTermos[1]).getCalculo();
-            case SUBTRACAO:     return new Subtracao    (valoresDosTermos[0], valoresDosTermos[1]).getCalculo();
-            case MULTIPLICACAO: return new Multiplicacao(valoresDosTermos[0], valoresDosTermos[1]).getCalculo();
-            default: Divisao divisao = new Divisao      (valoresDosTermos[0], valoresDosTermos[1]);
+            case ADICAO:        return new Adicao       ().calcular(valoresDosTermos[0], valoresDosTermos[1]);
+            case SUBTRACAO:     return new Subtracao    ().calcular(valoresDosTermos[0], valoresDosTermos[1]);
+            case MULTIPLICACAO: return new Multiplicacao().calcular(valoresDosTermos[0], valoresDosTermos[1]);
+            default: Divisao divisao = new Divisao                 (valoresDosTermos[0], valoresDosTermos[1]);
                      modulo = divisao.getModulo();
-                     return   divisao.getCalculo();
+                     return   divisao.calcular();
         }
     }
 

@@ -1,18 +1,15 @@
 package operacoes;
 
-public class Divisao {
-    int modulo;
-    int quociente;
+public class Divisao extends Calcular {
+    int modulo = 0;
 
     public Divisao(int... valoresDosTermos) {
-        modulo = 0;
-        quociente = valoresDosTermos[0];;
+        resultado = valoresDosTermos[0];;
         for (int i = 1; i < valoresDosTermos.length; i++) {
-            modulo += quociente % valoresDosTermos[i];
-            quociente /= valoresDosTermos[i];
+            modulo += resultado % valoresDosTermos[i];
+            resultado /= valoresDosTermos[i];
         }
     }
 
-    public int getModulo()    { return modulo; }
-    public int getQuociente() { return quociente; }
+    public int getModulo() { return modulo; }
 }

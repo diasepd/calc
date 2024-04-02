@@ -1,4 +1,6 @@
-import Operacoes.*;
+package minhacalculadora;
+
+import operacoes.*;
 import java.util.Scanner;
 
 public enum Operacao {
@@ -13,7 +15,8 @@ public enum Operacao {
     final String primeiroTermo;
     final String segundoTermo;
     final String resultado;
-    final int[]  valoresDosTermos = {0, 0, 0};
+    final int[]  valoresDosTermos = {0, 0};
+    int          modulo;
 
     Operacao(String descricao, String primeiroTermo, String segundoTermo, String resultado) {
         this.descricao     = descricao;
@@ -42,21 +45,21 @@ public enum Operacao {
         return false;
     }
 
-    public void mostrarResultado() {System.out.printf("%s = %d\n", this.resultado, this.getCalculo());}
+    public void mostrarResultado() { System.out.printf("%s = %d\n", this.resultado, this.getCalculo()); }
 
     private int getCalculo() {
         switch (this) {
-            case ADICAO:        return Somar.soma(valoresDosTermos);
-            case SUBTRACAO:     return Subtrair.resto(valoresDosTermos);
-            case MULTIPLICACAO: return Multiplicar.produto(valoresDosTermos);
-            default:            valoresDosTermos[2] = Dividir.modulo(valoresDosTermos);
-                                return Dividir.quociente(valoresDosTermos);
+            case ADICAO:        return new Adicao(valoresDosTermos[0], valoresDosTermos[1]).getSoma();
+            case SUBTRACAO:     return new Subtracao(valoresDosTermos[0], valoresDosTermos[1]).getResto();
+            case MULTIPLICACAO: return new Multiplicacao(valoresDosTermos[0], valoresDosTermos[1]).getProduto();
+            default:
+                Divisao divisao = new Divisao(valoresDosTermos[0], valoresDosTermos[1]);
+                modulo = divisao.getModulo();
+                return divisao.getQuociente();
         }
     }
 
     public void mostrarResto() {
-        if (this.equals(Operacao.DIVISAO) && restoDeDivisao())
-            System.out.printf("Resto = %d\n", this.valoresDosTermos[2]);}
-
-    private boolean restoDeDivisao() {return this.valoresDosTermos[2] != 0;}
+        if (this.equals(Operacao.DIVISAO) && modulo != 0) System.out.printf("Resto = %d\n", modulo);
+    }
 }

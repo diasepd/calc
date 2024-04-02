@@ -1,10 +1,12 @@
+package minhacalculadora;
+
 import java.util.Scanner;
 
 public class Menu {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Operacao operacao;
-        do {menuComOperacoes();
+        do {montarMenu();
             operacao = escolherOperacao(scanner.next());
             if (operacao.EhValida()) {
                 operacao.digitarTermos(scanner);
@@ -16,7 +18,7 @@ public class Menu {
         } while (operacao != Operacao.SAIR);
     }
 
-    static void menuComOperacoes() {
+    static void montarMenu() {
         System.out.printf("\nEscolha uma operação matemática: %s %s %s %s ou S (Sair): ", Operacao.ADICAO.descricao,
                 Operacao.SUBTRACAO.descricao, Operacao.MULTIPLICACAO.descricao, Operacao.DIVISAO.descricao);
     }

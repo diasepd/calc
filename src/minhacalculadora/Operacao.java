@@ -16,7 +16,7 @@ public enum Operacao {
     final String segundoTermo;
     final String resultado;
     final int[]  valoresDosTermos = {0, 0};
-    int          modulo;
+          int    modulo;
 
     Operacao(String descricao, String primeiroTermo, String segundoTermo, String resultado) {
         this.descricao     = descricao;
@@ -49,13 +49,12 @@ public enum Operacao {
 
     private int getCalculo() {
         switch (this) {
-            case ADICAO:        return new Adicao(valoresDosTermos[0], valoresDosTermos[1]).getResultado();
-            case SUBTRACAO:     return new Subtracao(valoresDosTermos[0], valoresDosTermos[1]).getResultado();
+            case ADICAO:        return new Adicao       (valoresDosTermos[0], valoresDosTermos[1]).getResultado();
+            case SUBTRACAO:     return new Subtracao    (valoresDosTermos[0], valoresDosTermos[1]).getResultado();
             case MULTIPLICACAO: return new Multiplicacao(valoresDosTermos[0], valoresDosTermos[1]).getResultado();
-            default:
-                Divisao divisao = new Divisao(valoresDosTermos[0], valoresDosTermos[1]);
-                modulo = divisao.getModulo();
-                return divisao.getResultado();
+            default: Divisao divisao = new Divisao      (valoresDosTermos[0], valoresDosTermos[1]);
+                     modulo = divisao.getModulo();
+                     return   divisao.getResultado();
         }
     }
 

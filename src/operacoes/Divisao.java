@@ -1,14 +1,14 @@
 package operacoes;
 
-public class Divisao extends Calcular {
+public class Divisao extends Calculo {
     int mod = 0;
 
-    public int getMod() { return mod; }
+    public int getMod(){return mod;}
 
     @Override
-    public int calcular(int... valoresDosTermos) {
+    public int calcular(int... valoresDosTermos){
         resultado = valoresDosTermos[0];;
-        for (int i = 1; i < valoresDosTermos.length; i++) {
+        for(int i = 1; i < valoresDosTermos.length; i++){
             mod += resultado % valoresDosTermos[i];
             resultado /= valoresDosTermos[i];
         }

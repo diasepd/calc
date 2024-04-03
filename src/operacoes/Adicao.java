@@ -1,9 +1,10 @@
 package operacoes;
 
-public class Adicao extends Calcular {
+public class Adicao extends Calculo {
     @Override
-    public int calcular(int... valoresDosTermos) {
-        for (int termo: valoresDosTermos) resultado += termo;
+    public int calcular(int... valoresDosTermos){
+        for(int termo: valoresDosTermos)
+            resultado += termo;
         return resultado;
     }
 }
